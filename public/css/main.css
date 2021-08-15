@@ -36,7 +36,7 @@ header nav ul li a:hover{
 }
 
 
-.list form{
+.list .container{
     margin-top: 25px;
 }
 
@@ -78,7 +78,7 @@ li.complete .edit-btn{
 
 
 
-form input[type=text] {
+.add-text {
     border: none;
     border-bottom: 1px solid blue;
     width: 400px;
