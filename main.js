@@ -49,6 +49,6 @@ const server = http.createServer((req, res)=>{
     })
 })
 
-server.listen(80, ()=>{
+server.listen(5000, ()=>{
     console.log('server start');
 })
