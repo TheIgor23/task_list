@@ -1,6 +1,7 @@
 const FileSystem = require('fs');
 const path = require('path');
 const http = require('http');
+const PORT = process.env.PORT || 80;
 
 const server = http.createServer((req, res)=>{
     let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url)
@@ -49,7 +50,9 @@ const server = http.createServer((req, res)=>{
     })
 })
 
-server.listen(5000, ()=>{
+server.listen(PORT, ()=>{
     console.log('server start');
 })
+
+
 
