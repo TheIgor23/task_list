@@ -45,14 +45,20 @@ function OnAddBtnClick(){
         return;
     }
 
+    var utc = new Date().toJSON().slice(0, 10).split('-').reverse().join('.');
+
     const checkBox = CreateElement('input', {type: 'checkbox', classList: 'item-check'});
     const Title = CreateElement('label', {innerText: newTitle.value, classList: 'item-text'});
-    const text_edit = CreateElement('input', {type: 'text', classList: 'textfield ms-auto'});
+
+    const date_label = CreateElement('label', {innerText: utc, classList: 'item-date me-auto'});
+    const text_edit = CreateElement('input', {type: 'text', classList: 'textfield'});
+    
+    const date_set = CreateElement('input', {type: 'date', classList: 'item-date-set', value: new Date().toJSON().slice(0, 10)});
     const edit_btn = CreateElement('button', {classList: 'edit-btn', innerHTML: '<ion-icon name="create-outline"></ion-icon>'});
     const remove_btn = CreateElement('button', {classList: 'rm-btn', innerHTML: '<ion-icon name="trash-outline"></ion-icon>'});
     
-    const newItem = CreateElement('li', {classList: 'list-group-item d-flex justify-content-between flex-wrap'},
-    checkBox, Title, text_edit,edit_btn,remove_btn);
+    const newItem = CreateElement('li', {classList: 'list-group-item d-flex justify-content-evenly flex-wrap'},
+    checkBox, Title, date_label ,date_set,text_edit,edit_btn,remove_btn);
     items.appendChild(newItem);
     
     newTitle.value = '';
@@ -73,20 +79,28 @@ function OnCompleteCheckClick(target){
 }
 
 function OnEditBtnClick(target){
+
     const item = target.parentNode;
     
     const edit_btn = item.querySelector('.edit-btn');
     const text_edit = item.querySelector('.textfield');
+    const date_set = item.querySelector('.item-date-set');
     
     if(!text_edit.classList.toggle('editing')){
+        date_set.classList.toggle('editing');
         if(!text_edit.value.isEmpty()){
             item.querySelector('.item-text').innerHTML = text_edit.value;
+           
+        }
+        else if(!date_set.value.isEmpty()){
+            item.querySelector('.item-date').innerHTML = date_set.value.split('-').reverse().join('.');
         }
         text_edit.value ='';
         edit_btn.innerHTML = '<ion-icon name="create-outline"></ion-icon>';
     }
     else{
        edit_btn.innerHTML = '<ion-icon name="checkmark-circle-outline"></ion-icon>';
+       date_set.classList.toggle('editing');
     }   
 }
 

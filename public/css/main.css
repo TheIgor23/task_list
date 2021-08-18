@@ -46,7 +46,7 @@ header nav ul li a:hover{
 
 
 .list-group-item{
-    display: flex;
+    
     padding: 0.5em;
     font-size: 25px;
     align-items: center;
@@ -55,14 +55,22 @@ header nav ul li a:hover{
 li .item-check {
     margin-right: 1rem;
     float: right;
+    
 }
-li .textfield{
+
+li .item-date-set{
     visibility: hidden;
+}
+
+li .textfield
+{
+    visibility: hidden;
+    display: none;
     width: 150px;
 }
 li .item-text{
     width: 200px;
-    
+    align-self: center;
 }
 li .rm-btn, .edit-btn, .add-button{
     
@@ -73,6 +81,7 @@ li .rm-btn, .edit-btn, .add-button{
 
 li.complete .edit-btn{
     visibility: hidden;
+    display: none;
 }
 
 
@@ -81,7 +90,7 @@ li.complete .edit-btn{
 .add-text {
     border: none;
     border-bottom: 1px solid blue;
-    width: 400px;
+    width: 250px;
 }
 
 ion-icon {
@@ -92,16 +101,20 @@ ion-icon[name=add-outline]{
     color: white;
     font-size: 30px;
 }
-li:not(.complete) .textfield.editing{
+li:not(.complete) .textfield.editing, 
+li:not(.complete) .item-date-set.editing{
     
     visibility: visible;
+    display: inline-block;
     text-decoration: none;
 }
 li.complete,
+li.complete .item-date-set,
 li.complete input .item-check,
 li.complete button,
 li.complete ion-icon
 {
+    
     text-decoration: line-through;
     background-color: rgb(223, 223, 223);
     opacity: 0.75;
