@@ -6,6 +6,7 @@ const AddBtn = document.querySelector('.add-button');
 
 function OnClick({target}){
     const class_names = target.classList;
+   
     switch (true) {
         case class_names.contains('rm-btn'):
             OnRemoveBtnClick(target);
@@ -19,6 +20,8 @@ function OnClick({target}){
         default:
             break;
     }
+    localStorage.setItem("items", items.innerHTML);
+   
 }
 
 function CreateElement(tag, prop, ...children){
@@ -62,6 +65,8 @@ function OnAddBtnClick(){
     items.appendChild(newItem);
     
     newTitle.value = '';
+
+    localStorage.setItem("items", items.innerHTML);
 }
 
 
@@ -71,11 +76,13 @@ function OnRemoveBtnClick(target){
 
 function OnCompleteCheckClick(target){
     const item = target.parentNode;
-    if(item.classList.contains('complete')){
-        item.classList.remove('complete');
-    }else{
-        item.classList.add('complete');
-    }
+
+    if(target.checked)
+        target.setAttribute('checked','');
+    else 
+        target.removeAttribute('checked')
+    item.classList.toggle('complete');
+    
 }
 
 function OnEditBtnClick(target){
