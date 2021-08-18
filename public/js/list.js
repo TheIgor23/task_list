@@ -99,7 +99,7 @@ function OnEditBtnClick(target){
             item.querySelector('.item-text').innerHTML = text_edit.value;
            
         }
-        else if(!date_set.value.isEmpty()){
+        if(!date_set.value.isEmpty()){
             item.querySelector('.item-date').innerHTML = date_set.value.split('-').reverse().join('.');
         }
         text_edit.value ='';
