@@ -3,6 +3,7 @@ const items = document.querySelector('.list-group');
 
 const newTitle = document.querySelector('.add-text');
 const AddBtn = document.querySelector('.add-button');
+const SortBtn = document.querySelector('.sort-button');
 
 function OnClick({target}){
     const class_names = target.classList;
@@ -37,14 +38,10 @@ function CreateElement(tag, prop, ...children){
     return el;
 }
 
-
-
 function OnAddBtnClick(){
     
-
-
     if(newTitle.value.isEmpty()){
-        alert("Error. Enter task!");
+        
         return;
     }
 
@@ -61,14 +58,13 @@ function OnAddBtnClick(){
     const remove_btn = CreateElement('button', {classList: 'rm-btn', innerHTML: '<ion-icon name="trash-outline"></ion-icon>'});
     
     const newItem = CreateElement('li', {classList: 'list-group-item d-flex justify-content-evenly flex-wrap'},
-    checkBox, Title, date_label ,date_set,text_edit,edit_btn,remove_btn);
+    checkBox, Title, date_label , text_edit,date_set,edit_btn,remove_btn);
     items.appendChild(newItem);
     
     newTitle.value = '';
 
     localStorage.setItem("items", items.innerHTML);
 }
-
 
 function OnRemoveBtnClick(target){
     target.parentNode.parentNode.removeChild(target.parentNode);
@@ -107,11 +103,31 @@ function OnEditBtnClick(target){
     }
     else{
        edit_btn.innerHTML = '<ion-icon name="checkmark-circle-outline"></ion-icon>';
+       text_edit.value = item.querySelector('.item-text').innerHTML;
        date_set.classList.toggle('editing');
+       date_set.value = item.querySelector('.item-date').innerHTML.split('.').reverse().join('-');
     }   
 }
 
+function Sort(){
+    var tasks = [];
+    items.childNodes.forEach(task=>{
+        tasks.push(task);
+    })
+    tasks.sort((task1, task2)=>{
+        return new Date(task1.querySelector('.item-date').innerHTML.split('.').reverse().join('-')) - new Date(task2.querySelector('.item-date').innerHTML.split('.').reverse().join('-'))
+    })
+    tasks.forEach(a=>{
+        console.log(a.querySelector('.item-date').innerHTML);
+        items.appendChild(a);
+    })
+
+    localStorage.setItem("items", items.innerHTML);
+}
+
+
 AddBtn.addEventListener('click', OnAddBtnClick);
+SortBtn.addEventListener('click', Sort);
 items.addEventListener('click', OnClick);
 newTitle.addEventListener('keyup', event =>{
     if(event.keyCode === 13){

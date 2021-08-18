@@ -20,7 +20,7 @@ header nav ul li{
     padding-top: 14px;
     padding-top: 2px;
     float: right;
-    margin-right: 50px;
+    margin-right: 25px;
    
     
 }
@@ -48,7 +48,7 @@ header nav ul li a:hover{
 .list-group-item{
     
     padding: 0.5em;
-    font-size: 25px;
+    font-size: 15px;
     align-items: center;
 }
 
@@ -60,19 +60,31 @@ li .item-check {
 
 li .item-date-set{
     visibility: hidden;
+    display: none;
+    margin-top: 2px;
+    border: none;
+    border-bottom: 1px solid blue;
+    background-color: white;
+    width: 140px;
+}
+li .item-date-set:hover,
+li .item-date-set:active{
+    background-color: white;
 }
 
 li .textfield
 {
     visibility: hidden;
     display: none;
+    border: none;
+    border-bottom: 1px solid blue;
     width: 150px;
 }
 li .item-text{
     width: 200px;
     align-self: center;
 }
-li .rm-btn, .edit-btn, .add-button{
+li .rm-btn, .edit-btn, .add-button, .sort-button{
     
     outline: none;
     border: none;
@@ -92,11 +104,15 @@ li.complete .edit-btn{
     border-bottom: 1px solid blue;
     width: 250px;
 }
+.sort-button{
+    margin-left: 0.5em;
+}
 
 ion-icon {
     pointer-events: none;
   }
-ion-icon[name=add-outline]{
+ion-icon[name=add-outline],
+ion-icon[name=chevron-down-outline]{
     background-color: #3f51b5;
     color: white;
     font-size: 30px;
